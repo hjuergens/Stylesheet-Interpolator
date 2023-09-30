@@ -1,0 +1,9 @@
+<expressions>
+    <option atti="${key}" text="problem"/>
+    <option atti="a-${key}" text="problem"/>
+    <option atti="${key}-b" text="problem"/>
+    <option atti="${k234}ende" text="sollte ersetzt werden"/>
+    <option atti="bleibt" />
+    <non-option atti="abc-${k234}-def" text="jetzt wird kompliziert"/>
+    <non-option atti="abc-${k234}-def-${key1}-ghi" text="jetzt wird kompliziert"/>
+</expressions>
