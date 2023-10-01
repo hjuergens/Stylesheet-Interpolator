@@ -1,4 +1,5 @@
 <properties>
     <property key="key1" value="value1" />
-    <property key="k234" value="v998" />
+    <property key="region" value="se" />
+    <property key="currency" value="SEK" />
 </properties>
