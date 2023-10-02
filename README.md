@@ -65,6 +65,8 @@ Load the file containing the values of the variables.
 Define a key which reflects the structure of the key-value-entries in that file.
 ```xml
     <xsl:variable name="lookupDoc" select="document('./properties.xml')"/>
+```
+```xml
     <xsl:key name="k1" match="property" use="@key"/>
 ```
 

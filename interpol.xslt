@@ -25,40 +25,33 @@
         <xsl:param name="pStrIterate"/>
 
         <xsl:choose>
-            <xsl:when test="contains($pStrIterate,'${') and contains($pStrIterate,'}')">
+            <xsl:when test="string-length(substring-before(substring-after($pStrIterate,'${'),'}')) > 0">
                 <xsl:value-of select="substring-before($pStrIterate,'${')"/>
+
+                <xsl:variable name="vDefaultPost" select="substring-after(substring-after($pStrIterate,'${'),'}')"/>
+
+                <xsl:variable name="vKeyName" select="substring-before(substring-after($pStrIterate,'${'),'}')"/>
+                <xsl:for-each select="$lookupDoc">
+                    <xsl:choose>
+                        <xsl:when test="key('k1', $vKeyName)/@value">
+                            <xsl:value-of select="key('k1', $vKeyName)/@value"/>
+                        </xsl:when>
+                        <xsl:when test="string-length($vKeyName) > 0">
+                            <xsl:text>${</xsl:text><xsl:value-of select="$vKeyName"/><xsl:text>}</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise/>
+                    </xsl:choose>
+                </xsl:for-each>
+
+                <xsl:call-template name="variableExpansion">
+                    <xsl:with-param name="pStrIterate" select="$vDefaultPost"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$pStrIterate"/>
             </xsl:otherwise>
         </xsl:choose>
 
-        <xsl:variable name="vDefaultPost" select="substring-after(substring-after($pStrIterate,'${'),'}')"/>
-
-        <xsl:variable name="vKeyName" select="substring-before(substring-after($pStrIterate,'${'),'}')"/>
-        <xsl:for-each select="$lookupDoc">
-            <xsl:choose>
-                <xsl:when test="key('k1', $vKeyName)/@value">
-                    <xsl:value-of select="key('k1', $vKeyName)/@value"/>
-                </xsl:when>
-                <xsl:when test="string-length($vKeyName) > 0">
-                    <xsl:text>${</xsl:text><xsl:value-of select="$vKeyName"/><xsl:text>}</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
-
-        <xsl:choose>
-            <xsl:when test="contains($vDefaultPost,'${') and contains($vDefaultPost,'}')">
-                <xsl:call-template name="variableExpansion">
-                    <xsl:with-param name="pStrIterate" select="$vDefaultPost"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$vDefaultPost"/>
-            </xsl:otherwise>
-        </xsl:choose>
     </xsl:template>
 
 
