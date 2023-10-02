@@ -36,9 +36,7 @@
                     <xsl:value-of select="key('k1', $vKeyName)/@value"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>${</xsl:text>
-                    <xsl:value-of select="$vKeyName"/>
-                    <xsl:text>}</xsl:text>
+                    <xsl:text>${</xsl:text><xsl:value-of select="$vKeyName"/><xsl:text>}</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
