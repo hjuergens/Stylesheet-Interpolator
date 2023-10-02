@@ -1,4 +1,7 @@
 <expressions>
+    <dontcare stringliteral="abc-${currency1}-def-${region}-ghi" text="multiple variable substitution"/>
+    <dontcare stringliteral="abc-${currency}-def-${region1}-ghi" text="multiple variable substitution"/>
+    <dontcare stringliteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
     <option atti="a-${key1}" text="problem"/>
     <option atti="${key}-b" text="problem"/>
     <option atti="${key" text="problem"/>

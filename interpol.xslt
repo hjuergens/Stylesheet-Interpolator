@@ -31,7 +31,16 @@
 
         <xsl:variable name="vKeyName" select="substring-before(substring-after($pStrIterate,'${'),'}')"/>
         <xsl:for-each select="$lookupDoc">
-            <xsl:value-of select="key('k1', $vKeyName)/@value"/>
+            <xsl:choose>
+                <xsl:when test="key('k1', $vKeyName)/@value">
+                    <xsl:value-of select="key('k1', $vKeyName)/@value"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>${</xsl:text>
+                    <xsl:value-of select="$vKeyName"/>
+                    <xsl:text>}</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:for-each>
 
         <xsl:choose>
