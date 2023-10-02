@@ -2,12 +2,12 @@
     <dontcare stringliteral="abc-${currency1}-def-${region}-ghi" text="multiple variable substitution"/>
     <dontcare stringliteral="abc-${currency}-def-${region1}-ghi" text="multiple variable substitution"/>
     <dontcare stringliteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
-    <option atti="a-${key1}" text="problem"/>
-    <option atti="${key}-b" text="problem"/>
-    <option atti="${key" text="problem"/>
-    <option atti="key}-b" text="problem"/>
-    <option atti="${key1" text="problem"/>
-    <option atti="key1}-b" text="problem"/>
+    <option atti="a-${key1}" text="A problem"/>
+    <option atti="${key}-b" text="B problem"/>
+    <option atti="${key" text="C problem"/>
+    <option atti="key}-b" text="D problem"/>
+    <option atti="${key1" text="E problem"/>
+    <option atti="key1}-b" text="F problem"/>
     <optionA atti="}${key}" text="-1 problem"/>
     <optionA atti="}${key1}" text="0 problem"/>
     <optionA atti="key1}-b${key1}" text="1 problem"/>

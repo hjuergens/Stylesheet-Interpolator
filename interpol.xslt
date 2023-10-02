@@ -6,13 +6,13 @@
     <xsl:variable name="lookupDoc" select="document('./properties.xml')"/>
     <xsl:key name="k1" match="property" use="@key"/>
 
-    <xsl:template match="node()|@*">
+    <xsl:template match="node()">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="@*[contains(.,'${') and contains(.,'}')]">
+    <xsl:template match="@*">
         <xsl:attribute name="{name()}">
             <xsl:call-template name="variableExpansion">
                 <xsl:with-param name="pStrIterate" select="."/>
@@ -24,8 +24,14 @@
     <xsl:template name="variableExpansion">
         <xsl:param name="pStrIterate"/>
 
-        <xsl:variable name="vDefaultPre"  select="substring-before($pStrIterate,'${')"/>
-        <xsl:value-of select="$vDefaultPre"/>
+        <xsl:choose>
+            <xsl:when test="contains($pStrIterate,'${') and contains($pStrIterate,'}')">
+                <xsl:value-of select="substring-before($pStrIterate,'${')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$pStrIterate"/>
+            </xsl:otherwise>
+        </xsl:choose>
 
         <xsl:variable name="vDefaultPost" select="substring-after(substring-after($pStrIterate,'${'),'}')"/>
 
@@ -35,8 +41,10 @@
                 <xsl:when test="key('k1', $vKeyName)/@value">
                     <xsl:value-of select="key('k1', $vKeyName)/@value"/>
                 </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="string-length($vKeyName) > 0">
                     <xsl:text>${</xsl:text><xsl:value-of select="$vKeyName"/><xsl:text>}</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
