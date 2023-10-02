@@ -12,10 +12,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <!--
-    <xsl:template match="@*[and(starts-with(.,'${'),ends-with(.,'}'))   contains(.,'$')]">
-    -->
-
     <xsl:template match="@*[contains(.,'${') and contains(.,'}')]">
         <xsl:attribute name="{name()}">
             <xsl:call-template name="variableExpansion">
@@ -31,25 +27,12 @@
         <xsl:variable name="vDefaultPre"  select="substring-before($pStrIterate,'${')"/>
         <xsl:value-of select="$vDefaultPre"/>
 
-        <!--xsl:variable name="vDefaultPost">
-        <xsl:if test="string-length($vDefaultPre) > 0">
-            <xsl:value-of select="substring-after($pStrIterate,'}')"/>
-        </xsl:if>
-        </xsl:variable-->
-        <xsl:variable name="vDefaultPost" select="substring-after($pStrIterate,'}')"/>
+        <xsl:variable name="vDefaultPost" select="substring-after(substring-after($pStrIterate,'${'),'}')"/>
 
         <xsl:variable name="vKeyName" select="substring-before(substring-after($pStrIterate,'${'),'}')"/>
         <xsl:for-each select="$lookupDoc">
             <xsl:value-of select="key('k1', $vKeyName)/@value"/>
         </xsl:for-each>
-
-        <!--
-        <xsl:if test="$vDefaultPost">
-            <xsl:call-template name="variableExpansion">
-                <xsl:with-param name="pStrIterate" select="$vDefaultPost"/>
-            </xsl:call-template>
-        </xsl:if>
-    -->
 
         <xsl:choose>
             <xsl:when test="contains($vDefaultPost,'${') and contains($vDefaultPost,'}')">

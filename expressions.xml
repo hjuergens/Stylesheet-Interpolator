@@ -11,8 +11,8 @@
     <optionA atti="key1}-b${key1}-c}" text="2 problem"/>
     <optionA atti="key1${-b${key1}" text="3 problem"/>
     <non-option atti="${k234}ende" text="sollte ersetzt werden"/>
-    <non-option atti="abc-${k234}-def" text="jetzt wird kompliziert"/>
-    <non-option atti="abc-${k234}-def-${key1}-ghi" text="jetzt wird kompliziert"/>
+    <non-option atti="abc-${key1}-def" text="jetzt wird kompliziert"/>
+    <non-option atti="abc-${key1}-def-${key1}-ghi" text="jetzt wird kompliziert"/>
     <option atti="${key}" text="no matching key"/>
     <dontcare stringliteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
 </expressions>
