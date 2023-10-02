@@ -1,23 +1,29 @@
-<expressions>
-    <dontcare stringliteral="abc-${currency1}-def-${region}-ghi" text="multiple variable substitution"/>
-    <dontcare stringliteral="abc-${currency}-def-${region1}-ghi" text="multiple variable substitution"/>
-    <dontcare stringliteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
-    <option atti="a-}${${key1}" text="double problem"/>
-    <option atti="a-${key1}}${"  text="double problem"/>
-    <option atti="a-${key1}" text="A problem"/>
-    <option atti="${key}-b" text="B problem"/>
-    <option atti="${key" text="C problem"/>
-    <option atti="key}-b" text="D problem"/>
-    <option atti="${key1" text="E problem"/>
-    <option atti="key1}-b" text="F problem"/>
-    <optionA atti="}${key}" text="-1 problem"/>
-    <optionA atti="}${key1}" text="0 problem"/>
-    <optionA atti="key1}-b${key1}" text="1 problem"/>
-    <optionA atti="key1}-b${key1}-c}" text="2 problem"/>
-    <optionA atti="key1${-b${key1}" text="3 problem"/>
-    <non-option atti="${k234}ende" text="sollte ersetzt werden"/>
-    <non-option atti="abc-${key1}-def" text="jetzt wird kompliziert"/>
-    <non-option atti="abc-${key1}-def-${key1}-ghi" text="jetzt wird kompliziert"/>
-    <option atti="${key}" text="no matching key"/>
-    <dontcare stringliteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<expressions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="expressions.xsd">
+    <expression stringLiteral="abc-${currency1}-def-${region}-ghi" text="multiple variable substitution"/>
+    <expression stringLiteral="abc-${currency}-def-${region1}-ghi" text="multiple variable substitution"/>
+    <expression stringLiteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
+    <expression stringLiteral="a-}${${key1}" text="double problem"/>
+    <expression stringLiteral="a-${key1}}${" text="double problem"/>
+    <expression stringLiteral="a-${key1}" text="A problem"/>
+    <expression stringLiteral="${key}-b" text="B problem"/>
+    <expression stringLiteral="${key" text="C problem"/>
+    <expression stringLiteral="key}-b" text="D problem"/>
+    <expression stringLiteral="${key1" text="E problem"/>
+    <expression stringLiteral="key1}-b" text="F problem"/>
+    <expression stringLiteral="}${key}" text="-1 problem"/>
+    <expression stringLiteral="}${key1}" text="0 problem"/>
+    <expression stringLiteral="key1}-b${key1}" text="1 problem"/>
+    <expression stringLiteral="key1}-b${key1}-c}" text="2 problem"/>
+    <expression stringLiteral="key1${-b${key1}" text="3 problem"/>
+    <expression stringLiteral="${k234}ende" text="sollte ersetzt werden"/>
+    <expression stringLiteral="abc-${key1}-def" text="jetzt wird kompliziert"/>
+    <expression stringLiteral="abc-${key1}-def-${key1}-ghi" text="jetzt wird kompliziert"/>
+    <expression stringLiteral="${key}" text="no matching key"/>
+    <expression stringLiteral="abc-${currency}-def-${region}-ghi" text="multiple variable substitution"/>
+    <expression stringLiteral="abcghi" text="multiple variable substitution"/>
+    <expression stringLiteral="a$bcghi" text="multiple variable substitution"/>
+    <expression stringLiteral="ab{cghi" text="multiple variable substitution"/>
+    <expression stringLiteral="abcg}hi" text="multiple variable substitution"/>
 </expressions>

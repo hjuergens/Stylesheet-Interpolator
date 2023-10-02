@@ -1,5 +1,7 @@
-<properties>
-    <property key="key1" value="value1" />
-    <property key="region" value="se" />
-    <property key="currency" value="SEK" />
+<?xml version="1.0" encoding="UTF-8"?>
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="properties.xsd">
+    <property key="key1" value="value1"/>
+    <property key="region" value="se"/>
+    <property key="currency" value="SEK"/>
 </properties>

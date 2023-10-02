@@ -1,0 +1,27 @@
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="expressions">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:choice>
+                    <xs:element name="expression" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType>
+                            <xs:attribute name="stringLiteral" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:token">
+                                        <xs:pattern value="[^${}]*(\$\{[^${}]+\}[^${}]*)*"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                            <xs:attribute type="xs:string" name="text" use="required"/>
+                            <xs:anyAttribute/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+            <xs:anyAttribute/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

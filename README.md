@@ -91,6 +91,8 @@ This is the entry point for a recursion which iterates over the placeholders.
   </xsl:attribute>
 </xsl:template>
 ```
+The value of the match attribute is obviously far from perfect. A pattern that match only if
+`${` and `} ` occur pairwise would be handy.
 
 The variable interpolation take place in a template called '`variableExpansion`'.
 
@@ -162,6 +164,27 @@ To make this easier to understand the following partly template contains comment
  ...
 </xsl:template>
 ```
+## Introduce Schemas
+
+To ensure that `${` and `} ` occur pairwise in the text containing placeholders a XSD is used.
+
+The crucial part in the `expressions.xsd` may look like this:
+```XML
+    <xs:attribute name="stringLiteral" use="required">
+        <xs:simpleType>
+            <xs:restriction base="xs:token">
+                <xs:pattern value="[^${}]*(\$\{[^${}]+\}[^${}]*)*"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+```
+The schema can be referenced in the destination xml.
+```XML
+<expressions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="expressions.xsd">
+```
+
+
 ## References
 
 "Personal performance is based on social achievements."
