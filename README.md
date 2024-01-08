@@ -5,7 +5,7 @@ This project is intended to provide a blueprint.
 The explanation should help to adapt this to
 your own project.
 
-## Precautions
+## Preparations
 
 To perform the interpolation process an executor for the stylesheet is necessary.
 Here [xmlstarlet](https://xmlstar.sourceforge.net/)
